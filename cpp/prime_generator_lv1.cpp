@@ -9,14 +9,21 @@ vector<int> nums = {1, 2, 3, 4};
 vector<int> calc_result = {};
 vector<vector<int>> temp_list = {};
 vector<int> getCombination(vector<int> nums, int target) {
-
-    for (int i; i < nums.size() - 2; i++) {
-        vector<int> temp = {};
-        temp.push_back(nums[i]);
-        for (int j; j < nums.size() - 1; j++) {
-            temp.push_back(nums[i + 1]);
-        }
+    
+    vector<vector<int>> combination_indexes;
+    int len_nums = nums.size();
+    for (int i; i < nums.size(); i++) {
+        combination_indexes.push_back({i, i + 1, i + 2});
     }
+
+
+    // for (int i; i < nums.size() - 2; i++) {
+    //     vector<int> temp = {};
+    //     temp.push_back(nums[i]);
+    //     for (int j; j < nums.size() - 1; j++) {
+    //         temp.push_back(nums[i + 1]);
+    //     }
+    // }
 
     return calc_result;
 }
