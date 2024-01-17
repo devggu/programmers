@@ -8,5 +8,5 @@ for i in range(len(a)):
     for j in range(i + 1, len(a)):
         if sum(a[i:j]) == _sum:
             combinations.append(a[i:j])
-        elif (a[i:j]) > _sum:
-                break
+        elif sum(a[i:j]) > _sum:
+            break
