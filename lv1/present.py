@@ -28,7 +28,8 @@ class Character:
     
     def next_month(self):
         for giver in self.given:
-            if self.given[giver] > 
+            if self.given[giver] > 0:
+                self.given[giver] -= 1
 
 
 friend_objs = []
