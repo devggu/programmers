@@ -4,6 +4,7 @@ import re
 class Participant:
     def __init__(self, info):
         self.info = info
+        self.properties = set()
         self.parse_info()
 
     def parse_info(self):
@@ -11,39 +12,31 @@ class Participant:
             r"^(java|cpp|python) (frontend|backend) (junior|senior) (pizza|chicken|-) (\d+)$",
             self.info,
         )
-        self.language = m.group(1)
-        self.position = m.group(2)
-        self.career = m.group(3)
-        self.food = m.group(4)
+        for i in range(1,5):
+            self.properties.add(m.group(i))
         self.score = int(m.group(5))
     
     def inspect(self, rule):
-        if rule.language != "-" and self.language != rule.language:
+        if not rule.properties.issubset(self.properties):
             return False
-        if rule.position != "-" and self.position != rule.position:
-            return False
-        if rule.career != "-" and self.career != rule.career:
-            return False
-        if rule.food != "-" and self.food != rule.food:
-            return False
-        if self.score < rule.score:
+        elif self.score < rule.score:
             return False
         return True
 
 class Rules:
     def __init__(self, query):
-        self.parse_query(query)
+        self.properties = set()
         self.num_qualified = 0
+        self.parse_query(query)
 
     def parse_query(self, query):
         m = re.match(
             r"^(java|cpp|python|-) and (frontend|backend|-) and (junior|senior|-) and (pizza|chicken|-) (\d+)$",
             query,
         )
-        self.language = m.group(1)
-        self.position = m.group(2)
-        self.career = m.group(3)
-        self.food = m.group(4)
+        for i in range(1,5):
+            if m.group(i) != "-":
+                self.properties.add(m.group(i))
         self.score = int(m.group(5))
 
 
@@ -52,6 +45,9 @@ def solution(info, query):
     rule_objects = [Rules(i) for i in query]
     answer = []
     for rule in rule_objects:
+        if len(rule.properties) == 0:
+            if rule.score > 0:
+                rule.num_qualified = len(participant_objects)
         for participant in participant_objects:
             if participant.inspect(rule):
                 rule.num_qualified += 1
