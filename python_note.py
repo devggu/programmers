@@ -1,12 +1,8 @@
-a = [3, 2, 7, 2, 4, 6, 5, 1, 3, 2, 7, 2]
+import re
 
-_sum = 15
+li = ['#asdasd','@1241as','gaasgasv']
 
-combinations = []
-
-for i in range(len(a)):
-    for j in range(i + 1, len(a)):
-        if sum(a[i:j]) == _sum:
-            combinations.append(a[i:j])
-        elif sum(a[i:j]) > _sum:
-            break
+for i in li:
+    m = re.match(r'^[^#@].*$', i)
+    if m:
+        print(i)
