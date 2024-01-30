@@ -46,8 +46,7 @@ def solution(info, query):
     answer = []
     for rule in rule_objects:
         if len(rule.properties) == 0:
-            if rule.score > 0:
-                rule.num_qualified = len(participant_objects)
+            for 
         for participant in participant_objects:
             if participant.inspect(rule):
                 rule.num_qualified += 1
