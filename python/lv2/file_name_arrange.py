@@ -11,9 +11,10 @@ class File:
 
     def parse(self, string):
         m = re.match(r"([^\d]*)([0-9]*)(.*)", string)
-        self.head = m.group(1)
-        self.number = m.group(2)
-        self.tail = m.group(3)
+        if m:
+            self.head = m.group(1)
+            self.number = m.group(2)
+            self.tail = m.group(3)
 
 
 def solution(files):
