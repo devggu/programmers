@@ -1,27 +1,29 @@
 from timer_decorator import timer
 import itertools
 
-# @timer
-# def solution(orders, course):
-#     answer = []
-#     menu_list = list(set("".join(orders)))
-#     menu_list.sort()
-#     menu_combinations_counter = {}
 
-#     for i in course:
-#         menu_combinations_counter[f"{i}"] = {}
-#         for combination in itertools.combinations(menu_list, i ):
-#             menu_combinations_counter[f"{i}"]["".join(combination)] = 0
+@timer
+def solution(orders, course):
+    answer = []
+    menu_list = list(set("".join(orders)))
+    menu_list.sort()
+    menu_combinations_counter = {}
 
-#     for course_num in menu_combinations_counter.keys():
-#         for combination in menu_combinations_counter[course_num].keys():
-#             for order in orders:
-#                 if set(combination).issubset(set(order)):
-#                     menu_combinations_counter[course_num][combination] += 1
-#         max_value = max(menu_combinations_counter[course_num].values())
-#         answer += [k for k,v in menu_combinations_counter[course_num].items() if v == max_value and v > 1]
-# answer.sort(key= lambda x: x)
-# return answer
+    for i in course:
+        menu_combinations_counter[f"{i}"] = {}
+        for combination in itertools.combinations(menu_list, i):
+            menu_combinations_counter[f"{i}"]["".join(combination)] = 0
+
+    for course_num in menu_combinations_counter.keys():
+        for combination in menu_combinations_counter[course_num].keys():
+            for order in orders:
+                if set(combination).issubset(set(order)):
+                    menu_combinations_counter[course_num][combination] += 1
+        max_value = max(menu_combinations_counter[course_num].values())
+        answer += [k for k, v in menu_combinations_counter[course_num].items() if v == max_value and v > 1]
+    answer.sort(key=lambda x: x)
+    return answer
+
 
 # @timer
 # def solution(orders, course):
@@ -67,22 +69,22 @@ import itertools
 #     return answer
 
 
-def get_combinations(orders, n):
-    combinations = {}
-    for order in orders:
-        for combination in itertools.combinations(order, n):
-            combination = "".join(sorted(combination))
-            if combination not in combinations:
-                combinations[combination] = 1
-            combinations[combination] += 1
+# def get_combinations(orders, n):
+#     combinations = {}
+#     for order in orders:
+#         for combination in itertools.combinations(order, n):
+#             combination = "".join(sorted(combination))
+#             if combination not in combinations:
+#                 combinations[combination] = 1
+#             combinations[combination] += 1
 
-@timer
-def solution(orders, course):
-    answer = []
-    
-    for order in orders:
-        order
-    return answer
+# @timer
+# def solution(orders, course):
+#     answer = []
+
+#     for order in orders:
+#         order
+#     return answer
 
 
 if __name__ == "__main__":
