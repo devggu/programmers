@@ -40,7 +40,7 @@ def solution(relation):
             #     print(df)
 
     print(answer_columns)
-    return answer
+    return len(answer_columns)
 
 
 if __name__ == "__main__":

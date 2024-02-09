@@ -6,7 +6,11 @@ import pywintypes
 pywintypes.datetime = pywintypes.TimeType
 
 opc=OpenOPC.client()
-
+#afdadfafasfasf
+#adfsafafssfa
+'''
+asfdasfasdgasgasgsadgasdgsad
+'''
 opc.servers()
 
 opc.connect('Matrikon.OPC.Simulation.1')
